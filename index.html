@@ -335,52 +335,52 @@ const CAT = {
   hotel:{label:"住宿",color:"var(--c-hotel)"},
   event:{label:"活動",color:"var(--c-event)"},
 };
-const M = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+const M = c => "https://www.google.com/maps/search/?api=1&query=" + c; // c = "lat,lng" 座標，落點精準不會找不到
 
 const DAYS = [
  {day:1,date:"6 / 4",wd:"四",title:"啟程",summary:"台北 → 巴黎 · 出發日",events:[
    {t:"19:30",ic:"🚗",c:"transit",title:"出發前往桃園機場",desc:"提前出門避開晚高峰車潮。出發前最後確認：護照、登機證/電子機票、托運與隨身行李、行動電源。",tips:["護照效期需離境後仍滿 6 個月","行動電源、鋰電池只能隨身不可托運"]},
-   {t:"21:30",ic:"🛫",c:"transit",title:"抵達桃園機場",desc:"國際線建議起飛前 3 小時抵達，辦理報到與托運。",tips:["要退稅的精品別放托運，隨身帶著","先在機場吃點東西、補水"],map:"桃園國際機場"},
+   {t:"21:30",ic:"🛫",c:"transit",title:"抵達桃園機場",desc:"國際線建議起飛前 3 小時抵達，辦理報到與托運。",tips:["要退稅的精品別放托運，隨身帶著","先在機場吃點東西、補水"],coord:"25.0777,121.2330"},
    {t:"23:30",ic:"✈️",c:"transit",title:"班機起飛",desc:"飛巴黎約 13–14 小時。多喝水、每 1–2 小時起身走動，避免久坐水腫；上機後即調成巴黎時間，幫助克服時差。",tips:["靠走道座位方便活動","帶頸枕、眼罩、保濕；機艙乾燥"]},
  ]},
  {day:2,date:"6 / 5",wd:"五",title:"巴黎・抵達日",summary:"香榭麗舍 · 凱旋門 · LV · Dior",events:[
-   {t:"08:05",ic:"🛬",c:"transit",title:"抵達巴黎機場（CDG）",desc:"戴高樂機場入境查驗 → 領行李 → 出關。可在此換少量歐元現金、開通 eSIM。",tips:["入境可能要備回程機票與訂房證明","領完行李留意扒手，別讓行李離身"],map:"Paris Charles de Gaulle Airport"},
+   {t:"08:05",ic:"🛬",c:"transit",title:"抵達巴黎機場（CDG）",desc:"戴高樂機場入境查驗 → 領行李 → 出關。可在此換少量歐元現金、開通 eSIM。",tips:["入境可能要備回程機票與訂房證明","領完行李留意扒手，別讓行李離身"],coord:"49.0097,2.5479"},
    {t:"10:30",ic:"🚕",c:"transit",title:"離開機場前往市區",desc:"計程車到右岸約 45–60 分鐘。CDG 到市區計程車為政府定價（右岸約 €56、左岸約 €65），上車先確認。",tips:["官方排班計程車在指定招呼站，勿搭主動攬客者","也可預約接送，行李多較舒適"]},
-   {t:"11:30",ic:"🏨",c:"hotel",title:"抵達飯店 Hôtel Zélie Champs-Elysées",desc:"通常下午才能 check-in，太早到可先寄放行李、輕裝出門。",tips:["長途飛行後別排太滿，留點緩衝","跟櫃台確認 check-in 時間與行李寄放"],map:"Hotel Zelie Champs-Elysees Paris"},
-   {t:"12:30",ic:"🥐",c:"food",title:"Le Drugstore（甜點 + 午餐）",desc:"Publicis Drugstore 位於香榭麗舍大道頂端，露台正對凱旋門，是邊看小凱旋門邊用餐的經典選擇。",tips:["想要露台景觀位建議先訂位","抵達首日吃清爽一點，幫助調時差"],map:"Publicis Drugstore Champs Elysees",book:1,menu:["生蠔・海鮮拼盤","法式漢堡 & 薯條","經典早午餐 Brunch","甜點櫃：閃電泡芙・檸檬塔"]},
-   {t:"15:00",ic:"📸",c:"sight",title:"凱旋門 Arc de Triomphe（拍照）",desc:"拿破崙為紀念戰役而建，12 條大道在此放射狀展開。可登頂 284 階看香榭麗舍全景。",tips:["過馬路走地下道，別橫越圓環","登頂需另購票，建議線上預約時段"],map:"Arc de Triomphe Paris",ticket:"登頂約€16"},
-   {t:"15:30",ic:"👜",c:"shop",title:"Louis Vuitton 香榭旗艦店",desc:"LV 全球旗艦，建築與陳列本身就是看點。旺季常需排隊，部分樓層可預約。",tips:["可請飯店禮賓或官網預約，減少排隊","記得辦退稅單（單店滿 €100.01）"],map:"Louis Vuitton Champs Elysees 101 Avenue des Champs-Elysees"},
-   {t:"17:00",ic:"☕",c:"shop",title:"Dior 蒙田大道 30 號",desc:"Dior 世界旗艦，內有 La Galerie Dior 展覽與咖啡廳 Monsieur Dior（甜點精緻）。現場感受氛圍。",tips:["咖啡廳熱門，想坐下可先問現場候位","蒙田大道精品林立，順路逛 Chanel、Gucci"],map:"Dior 30 Avenue Montaigne Paris",book:1,menuTitle:"咖啡廳推薦",menu:["Monsieur Dior：玫瑰/星形甜點","Dior 下午茶","花園主題甜品盤"]},
-   {t:"19:00",ic:"🍽️",c:"food",title:"香榭麗舍大道（逛街 + 晚餐）",desc:"世界最美大道之一，名店、咖啡館林立。傍晚燈光浪漫，適合散步晚餐。",menuTitle:"這一帶推薦",menu:["Ladurée 香榭店：馬卡龍下午茶","Fouquet's 經典咖啡館","各式 Brasserie 法式小館"],tips:["人多扒手多，包包前背、財不露白","首日早點回飯店補眠，隔天有拍攝行程"],map:"Avenue des Champs-Elysees Paris"},
+   {t:"11:30",ic:"🏨",c:"hotel",title:"抵達飯店 Hôtel Zélie Champs-Elysées",desc:"通常下午才能 check-in，太早到可先寄放行李、輕裝出門。",tips:["長途飛行後別排太滿，留點緩衝","跟櫃台確認 check-in 時間與行李寄放"],coord:"48.8757,2.2954"},
+   {t:"12:30",ic:"🥐",c:"food",title:"Le Drugstore（甜點 + 午餐）",desc:"Publicis Drugstore 位於香榭麗舍大道頂端，露台正對凱旋門，是邊看小凱旋門邊用餐的經典選擇。",tips:["想要露台景觀位建議先訂位","抵達首日吃清爽一點，幫助調時差"],coord:"48.8729,2.2969",book:1,menu:["生蠔・海鮮拼盤","法式漢堡 & 薯條","經典早午餐 Brunch","甜點櫃：閃電泡芙・檸檬塔"]},
+   {t:"15:00",ic:"📸",c:"sight",title:"凱旋門 Arc de Triomphe（拍照）",desc:"拿破崙為紀念戰役而建，12 條大道在此放射狀展開。可登頂 284 階看香榭麗舍全景。",tips:["過馬路走地下道，別橫越圓環","登頂需另購票，建議線上預約時段"],coord:"48.8738,2.2950",ticket:"登頂約€16"},
+   {t:"15:30",ic:"👜",c:"shop",title:"Louis Vuitton 香榭旗艦店",desc:"LV 全球旗艦，建築與陳列本身就是看點。旺季常需排隊，部分樓層可預約。",tips:["可請飯店禮賓或官網預約，減少排隊","記得辦退稅單（單店滿 €100.01）"],coord:"48.8721,2.3009"},
+   {t:"17:00",ic:"☕",c:"shop",title:"Dior 蒙田大道 30 號",desc:"Dior 世界旗艦，內有 La Galerie Dior 展覽與咖啡廳 Monsieur Dior（甜點精緻）。現場感受氛圍。",tips:["咖啡廳熱門，想坐下可先問現場候位","蒙田大道精品林立，順路逛 Chanel、Gucci"],coord:"48.8659,2.3048",book:1,menuTitle:"咖啡廳推薦",menu:["Monsieur Dior：玫瑰/星形甜點","Dior 下午茶","花園主題甜品盤"]},
+   {t:"19:00",ic:"🍽️",c:"food",title:"香榭麗舍大道（逛街 + 晚餐）",desc:"世界最美大道之一，名店、咖啡館林立。傍晚燈光浪漫，適合散步晚餐。",menuTitle:"這一帶推薦",menu:["Ladurée 香榭店：馬卡龍下午茶","Fouquet's 經典咖啡館","各式 Brasserie 法式小館"],tips:["人多扒手多，包包前背、財不露白","首日早點回飯店補眠，隔天有拍攝行程"],coord:"48.8698,2.3078"},
  ]},
  {day:3,date:"6 / 6",wd:"六",title:"鐵塔日・拍攝",summary:"夏樂宮機位 · 戰神廣場野餐 · 塞納河夜遊船",events:[
-   {t:"11:30",ic:"🍝",c:"food",title:"Di Vino（鐵塔餐廳）",desc:"鄰近戰神廣場的義式餐廳，氛圍適合開啟鐵塔一日。",tips:["靠窗/鐵塔向位置先訂","拍攝日，午餐別太久"],map:"Di Vino restaurant Paris Tour Eiffel",book:1,menu:["布拉塔起司 Burrata","松露義大利麵","拿坡里薄脆披薩","提拉米蘇"]},
-   {t:"14:00",ic:"📷",c:"photo",title:"夏樂宮 Palais de Chaillot（鐵塔機位）",desc:"特羅卡德羅一帶是拍攝鐵塔全景的最佳對岸視角，廣場、階梯、噴泉都是經典構圖。",tips:["此區人潮多、扒手與兜售者多，顧好器材","清晨光線更柔、人更少（可評估改早場補拍）"],map:"Palais de Chaillot Trocadero Paris"},
-   {t:"—",ic:"🏛️",c:"sight",title:"Cité de l'Architecture et du Patrimoine",desc:"建築與遺產博物館，館內露台是少有人知、可避開人潮的鐵塔機位。",tips:["門票約 €13","室內景觀位，雨天備案也適合"],map:"Cite de l'Architecture et du Patrimoine Paris",ticket:"€13"},
-   {t:"—",ic:"⛲",c:"photo",title:"Jardins du Trocadéro",desc:"特羅卡德羅花園，噴泉與水池作前景，鐵塔當背景的明信片畫面。",tips:["噴泉水花注意器材防水","逆光時段可拍剪影"],map:"Jardins du Trocadero Paris"},
-   {t:"—",ic:"📷",c:"photo",title:"Avenue de Camoëns",desc:"IG 爆紅的對稱街景，兩排奧斯曼建築正對鐵塔，階梯構圖極上鏡。",tips:["熱門拍點要排隊禮讓","早上順光、人少"],map:"Avenue de Camoens Paris"},
-   {t:"—",ic:"🎨",c:"photo",title:"Palais de Chaillot（塗鴉牆）",desc:"夏樂宮周邊的塗鴉牆，當街頭風格轉場與人像背景。",tips:["可作為服裝/風格轉場的對比場景"],map:"Palais de Chaillot Paris"},
-   {t:"16:20",ic:"🎞️",c:"photo",title:"225 Rue de l'Université（街景＋白轉場）",desc:"巷弄正對鐵塔的知名街景機位，淺色牆面適合做「白色轉場」。",tips:["住宅區請降低音量、勿擋住居民出入","隨人潮變化，預留補拍時間"],map:"225 Rue de l'Universite Paris"},
-   {t:"17:20",ic:"🧺",c:"shop",title:"Rue Cler（採買野餐）",desc:"巴黎經典市集街，買起司、火腿、麵包、水果、氣泡水，備齊野餐。",tips:["週日下午多數店家會打烊，今天是週六沒問題","自備野餐墊、濕紙巾、垃圾袋"],map:"Rue Cler Paris",menuTitle:"野餐採買推薦",menu:["法國長棍 Baguette","Comté・Brie 起司","火腿 Jambon","草莓・櫻桃","馬卡龍","氣泡水 / 粉紅酒"]},
-   {t:"18:00",ic:"🧺",c:"photo",title:"Champ de Mars（戰神廣場野餐）",desc:"鐵塔正前方大草坪，巴黎人最愛的野餐地。傍晚光線柔美，是拍攝黃金時段。",tips:["草坪有時禁玻璃瓶/夜間清場，留意現場告示與警衛","保管隨身物，野餐時也別鬆懈"],map:"Champ de Mars Paris"},
+   {t:"11:30",ic:"🍝",c:"food",title:"Di Vino（鐵塔餐廳）",desc:"鄰近戰神廣場的義式餐廳，氛圍適合開啟鐵塔一日。",tips:["靠窗/鐵塔向位置先訂","拍攝日，午餐別太久"],coord:"48.8645,2.2856",book:1,menu:["布拉塔起司 Burrata","松露義大利麵","拿坡里薄脆披薩","提拉米蘇"]},
+   {t:"14:00",ic:"📷",c:"photo",title:"夏樂宮 Palais de Chaillot（鐵塔機位）",desc:"特羅卡德羅一帶是拍攝鐵塔全景的最佳對岸視角，廣場、階梯、噴泉都是經典構圖。",tips:["此區人潮多、扒手與兜售者多，顧好器材","清晨光線更柔、人更少（可評估改早場補拍）"],coord:"48.8625,2.2876"},
+   {t:"—",ic:"🏛️",c:"sight",title:"Cité de l'Architecture et du Patrimoine",desc:"建築與遺產博物館，館內露台是少有人知、可避開人潮的鐵塔機位。",tips:["門票約 €13","室內景觀位，雨天備案也適合"],coord:"48.8625,2.2890",ticket:"€13"},
+   {t:"—",ic:"⛲",c:"photo",title:"Jardins du Trocadéro",desc:"特羅卡德羅花園，噴泉與水池作前景，鐵塔當背景的明信片畫面。",tips:["噴泉水花注意器材防水","逆光時段可拍剪影"],coord:"48.8609,2.2895"},
+   {t:"—",ic:"📷",c:"photo",title:"Avenue de Camoëns",desc:"IG 爆紅的對稱街景，兩排奧斯曼建築正對鐵塔，階梯構圖極上鏡。",tips:["熱門拍點要排隊禮讓","早上順光、人少"],coord:"48.8601,2.2924"},
+   {t:"—",ic:"🎨",c:"photo",title:"Palais de Chaillot（塗鴉牆）",desc:"夏樂宮周邊的塗鴉牆，當街頭風格轉場與人像背景。",tips:["可作為服裝/風格轉場的對比場景"],coord:"48.8620,2.2882"},
+   {t:"16:20",ic:"🎞️",c:"photo",title:"225 Rue de l'Université（街景＋白轉場）",desc:"巷弄正對鐵塔的知名街景機位，淺色牆面適合做「白色轉場」。",tips:["住宅區請降低音量、勿擋住居民出入","隨人潮變化，預留補拍時間"],coord:"48.8586,2.3003"},
+   {t:"17:20",ic:"🧺",c:"shop",title:"Rue Cler（採買野餐）",desc:"巴黎經典市集街，買起司、火腿、麵包、水果、氣泡水，備齊野餐。",tips:["週日下午多數店家會打烊，今天是週六沒問題","自備野餐墊、濕紙巾、垃圾袋"],coord:"48.8560,2.3057",menuTitle:"野餐採買推薦",menu:["法國長棍 Baguette","Comté・Brie 起司","火腿 Jambon","草莓・櫻桃","馬卡龍","氣泡水 / 粉紅酒"]},
+   {t:"18:00",ic:"🧺",c:"photo",title:"Champ de Mars（戰神廣場野餐）",desc:"鐵塔正前方大草坪，巴黎人最愛的野餐地。傍晚光線柔美，是拍攝黃金時段。",tips:["草坪有時禁玻璃瓶/夜間清場，留意現場告示與警衛","保管隨身物，野餐時也別鬆懈"],coord:"48.8556,2.2986"},
    {t:"20:30",ic:"🧹",c:"photo",title:"收拾野餐",desc:"垃圾全部帶走，維持草坪整潔。準備轉往夜拍機位。",tips:["天還亮（六月日落約 21:50），不急"]},
-   {t:"21:15",ic:"🎞️",c:"photo",title:"Rue de l'Université（晚轉場）",desc:"藍調時刻（日落後）拍攝，鐵塔開始點燈，色溫最美。",tips:["藍調時刻很短，先架好構圖等光"],map:"Rue de l'Universite Paris"},
-   {t:"22:00",ic:"✨",c:"photo",title:"鐵塔閃燈 Scintillement（5 分鐘）",desc:"每天日落後至凌晨 1 點，每到整點鐵塔會閃爍 5 分鐘金光，是必拍亮點。",tips:["手機開夜景/防手震，或用腳架","整點前 2 分鐘就定位"],map:"Eiffel Tower Paris"},
-   {t:"22:30",ic:"🚤",c:"photo",title:"Bateau Boréas（塞納河夜遊船）",desc:"夜晚搭船遊塞納河，從水上拍鐵塔與兩岸夜景，視角獨特。",tips:["河上風大很冷，務必帶外套/披肩","船會晃，器材防掉、開防手震"],map:"Bateau Boreas Seine Paris",book:1},
+   {t:"21:15",ic:"🎞️",c:"photo",title:"Rue de l'Université（晚轉場）",desc:"藍調時刻（日落後）拍攝，鐵塔開始點燈，色溫最美。",tips:["藍調時刻很短，先架好構圖等光"],coord:"48.8590,2.3010"},
+   {t:"22:00",ic:"✨",c:"photo",title:"鐵塔閃燈 Scintillement（5 分鐘）",desc:"每天日落後至凌晨 1 點，每到整點鐵塔會閃爍 5 分鐘金光，是必拍亮點。",tips:["手機開夜景/防手震，或用腳架","整點前 2 分鐘就定位"],coord:"48.8584,2.2945"},
+   {t:"22:30",ic:"🚤",c:"photo",title:"Bateau Boréas（塞納河夜遊船）",desc:"夜晚搭船遊塞納河，從水上拍鐵塔與兩岸夜景，視角獨特。",tips:["河上風大很冷，務必帶外套/披肩","船會晃，器材防掉、開防手震"],coord:"48.8602,2.2933",book:1},
    {t:"23:00",ic:"✨",c:"photo",title:"閃燈 23:00 / 24:00、全黑閃 01:00",desc:"把握整點閃燈；凌晨 1 點是當晚最後一次（之後熄燈），有「全黑後閃光」的特殊畫面。",tips:["行程到深夜，隔天迪士尼很操，注意體力","夜歸叫車回飯店，別走暗巷"]},
  ]},
  {day:4,date:"6 / 7",wd:"日",title:"左岸右岸・甜點與珠寶",summary:"巨型可頌 · Chanel · 凡登廣場 · 杜樂麗 · Kong",events:[
-   {t:"11:30",ic:"🥐",c:"food",title:"Maison Philippe Conticini（巨大可頌）",desc:"名甜點主廚 Philippe Conticini 的店（巴黎 1 區），招牌巨型可頌與閃電泡芙超上鏡。",tips:["熱門品項常售罄，早點到","今天是週日，先確認當日營業時間"],map:"Maison Philippe Conticini Paris 1er",menu:["巨型可頌 🥐","Paris-Brest（主廚成名作）","閃電泡芙 Éclair","檸檬塔・法式布丁 Flan"]},
-   {t:"13:00",ic:"🤍",c:"shop",title:"Chanel · 31 Rue Cambon（白色包裝）",desc:"Chanel 的歷史總店，樓上就是 Coco Chanel 的公寓，品牌精神原點。",tips:["週日部分精品店休或縮短營業，務必先查/預約","購物滿額辦退稅，保留收據與護照"],map:"Chanel 31 Rue Cambon Paris"},
-   {t:"15:00",ic:"💎",c:"shop",title:"VCA · 凡登廣場 Place Vendôme（+ 附近逛逛）",desc:"Van Cleef & Arpels 與全球頂級珠寶錶店環繞凡登廣場，氣場十足，廣場本身也很好拍。",tips:["高級珠寶店多採預約制，可請飯店協助","廣場中央圓柱是經典構圖"],map:"Place Vendome Paris"},
-   {t:"16:30",ic:"🌳",c:"sight",title:"杜樂麗花園 Jardin des Tuileries",desc:"羅浮宮前的法式古典花園，標誌性綠色鐵椅、噴泉水池，散步與拍照都愜意。",tips:["租把綠椅坐在水池邊，巴黎人的日常","夏季有時有摩天輪/遊樂場"],map:"Jardin des Tuileries Paris"},
-   {t:"17:30",ic:"🖼️",c:"sight",title:"巴黎小皇宮博物館 Petit Palais",desc:"美術館建築華美，常設展免費，內部金色階梯與中庭咖啡座非常出片。",tips:["常設展免費入場（特展另購）","留意閉館時間，通常 18:00 前後"],map:"Petit Palais Paris",ticket:"常設免費"},
-   {t:"19:30",ic:"🍸",c:"food",title:"Kong（晚餐）",desc:"位於 Kenzo 大樓頂樓的玻璃屋餐廳，俯瞰塞納河與新橋，《慾望城市》取景地，氣氛時髦。",tips:["景觀位超搶手，務必提前訂位","告知想要靠窗/玻璃屋區"],map:"Kong Restaurant Paris 1 Rue du Pont Neuf",book:1,menu:["壽司・卷物拼盤","和風煎餃 Gyoza","招牌調酒 Cocktail","玻璃屋甜點"]},
+   {t:"11:30",ic:"🥐",c:"food",title:"Maison Philippe Conticini（巨大可頌）",desc:"名甜點主廚 Philippe Conticini 的店（巴黎 1 區），招牌巨型可頌與閃電泡芙超上鏡。",tips:["熱門品項常售罄，早點到","今天是週日，先確認當日營業時間"],coord:"48.8568,2.3416",menu:["巨型可頌 🥐","Paris-Brest（主廚成名作）","閃電泡芙 Éclair","檸檬塔・法式布丁 Flan"]},
+   {t:"13:00",ic:"🤍",c:"shop",title:"Chanel · 31 Rue Cambon（白色包裝）",desc:"Chanel 的歷史總店，樓上就是 Coco Chanel 的公寓，品牌精神原點。",tips:["週日部分精品店休或縮短營業，務必先查/預約","購物滿額辦退稅，保留收據與護照"],coord:"48.8683,2.3283"},
+   {t:"15:00",ic:"💎",c:"shop",title:"VCA · 凡登廣場 Place Vendôme（+ 附近逛逛）",desc:"Van Cleef & Arpels 與全球頂級珠寶錶店環繞凡登廣場，氣場十足，廣場本身也很好拍。",tips:["高級珠寶店多採預約制，可請飯店協助","廣場中央圓柱是經典構圖"],coord:"48.8676,2.3293"},
+   {t:"16:30",ic:"🌳",c:"sight",title:"杜樂麗花園 Jardin des Tuileries",desc:"羅浮宮前的法式古典花園，標誌性綠色鐵椅、噴泉水池，散步與拍照都愜意。",tips:["租把綠椅坐在水池邊，巴黎人的日常","夏季有時有摩天輪/遊樂場"],coord:"48.8635,2.3268"},
+   {t:"17:30",ic:"🖼️",c:"sight",title:"巴黎小皇宮博物館 Petit Palais",desc:"美術館建築華美，常設展免費，內部金色階梯與中庭咖啡座非常出片。",tips:["常設展免費入場（特展另購）","留意閉館時間，通常 18:00 前後"],coord:"48.8661,2.3148",ticket:"常設免費"},
+   {t:"19:30",ic:"🍸",c:"food",title:"Kong（晚餐）",desc:"位於 Kenzo 大樓頂樓的玻璃屋餐廳，俯瞰塞納河與新橋，《慾望城市》取景地，氣氛時髦。",tips:["景觀位超搶手，務必提前訂位","告知想要靠窗/玻璃屋區"],coord:"48.8588,2.3417",book:1,menu:["壽司・卷物拼盤","和風煎餃 Gyoza","招牌調酒 Cocktail","玻璃屋甜點"]},
    {t:"21:30",ic:"🏨",c:"hotel",title:"回飯店休息",desc:"隔天 7:30 就要出門迪士尼，早點回去養足精神。",tips:["先把迪士尼門票/快速通行/app 準備好"]},
  ]},
  {day:5,date:"6 / 8",wd:"一",title:"迪士尼樂園",summary:"Disneyland Paris 一日 · 夜間煙火",events:[
-   {t:"07:30",ic:"🚆",c:"transit",title:"出門前往迪士尼",desc:"搭 RER A 線往 Marne-la-Vallée–Chessy 站，車程約 40–50 分鐘，出站即達園區。",tips:["買對到 Chessy 的車票/Navigo 加值區段","尖峰人多，顧好包包與手機"],map:"Marne-la-Vallee Chessy RER station"},
-   {t:"08:30",ic:"🏰",c:"event",title:"Disneyland Paris",desc:"巴黎迪士尼一日。善用官方 App 看即時排隊時間，熱門設施可加購 Premier Access 快速通行。",tips:["下載官方 App、先預約熱門設施與角色見面","穿好走的鞋、帶行動電源、薄外套與雨具","園內餐廳建議先訂位，避開用餐尖峰"],map:"Disneyland Paris"},
+   {t:"07:30",ic:"🚆",c:"transit",title:"出門前往迪士尼",desc:"搭 RER A 線往 Marne-la-Vallée–Chessy 站，車程約 40–50 分鐘，出站即達園區。",tips:["買對到 Chessy 的車票/Navigo 加值區段","尖峰人多，顧好包包與手機"],coord:"48.8703,2.7831"},
+   {t:"08:30",ic:"🏰",c:"event",title:"Disneyland Paris",desc:"巴黎迪士尼一日。善用官方 App 看即時排隊時間，熱門設施可加購 Premier Access 快速通行。",tips:["下載官方 App、先預約熱門設施與角色見面","穿好走的鞋、帶行動電源、薄外套與雨具","園內餐廳建議先訂位，避開用餐尖峰"],coord:"48.8722,2.7758"},
    {t:"22:50",ic:"🎆",c:"event",title:"城堡煙火秀結束",desc:"夜間煙火 + 投影是全日壓軸，建議提前 30–40 分卡好城堡正面位置。",tips:["煙火前先去一趟洗手間、補水","看完人潮極多，先想好集合點"]},
    {t:"23:10",ic:"🛍️",c:"shop",title:"等人潮散（買紀念品、拍照）",desc:"煙火後出口瞬間爆滿，留在園內逛主街商店、夜拍城堡，避開人流高峰。",tips:["主街商店通常營業到閉園後一小段","跟同行的人講好走散時的集合點"]},
    {t:"23:20",ic:"🚕",c:"transit",title:"往外走叫車回市區",desc:"確認 RER 末班車時間，或事先預約計程車/網約車（深夜叫車較難、排隊長）。",tips:["先用 app 預約車，省得現場久候","深夜返程注意安全，結伴同行"]},
@@ -391,36 +391,36 @@ const DAYS = [
    {t:"18:00",ic:"🍽️",c:"food",title:"公司聚餐",desc:"備選見下方「餐廳口袋名單」：米其林一星 Le Mavrommatis / Lasserre / Pertinence / NE-SO；漂亮餐廳 Kong / Les Ombres / Baronne。",tips:["米其林餐廳務必提前數週訂位、確認 dress code","訂位人數/時間若有變動，盡早通知餐廳"]},
  ]},
  {day:7,date:"6 / 10",wd:"三",title:"精品購物日 🛍️",summary:"換飯店 · 老佛爺圓頂 · 陽台時光",events:[
-   {t:"11:00",ic:"🧳",c:"hotel",title:"退房 Hôtel Zélie",desc:"整理行李退房，準備搬往歌劇院一帶的新飯店。",tips:["退房前再檢查保險箱、插座、浴室","購物滿額的退稅單與收據收好"],map:"Hotel Zelie Champs-Elysees Paris"},
-   {t:"11:40",ic:"🛎️",c:"hotel",title:"放行李 Hôtel Hélios Opéra",desc:"先到新飯店寄放行李，輕裝展開購物日。",tips:["跟櫃台確認 check-in 時間"],map:"Hotel Helios Opera Paris"},
-   {t:"12:00",ic:"🏛️",c:"shop",title:"老佛爺圓頂 Galeries Lafayette（拍照 + 逛街）",desc:"百年百貨的新藝術彩繪玻璃圓頂是必拍地標，頂樓有免費觀景台可眺望歌劇院與巴黎屋頂。",tips:["圓頂中央往上拍最震撼；頂樓露台看全景","這裡能集中辦退稅，逛街動線順"],map:"Galeries Lafayette Haussmann Paris"},
-   {t:"17:00",ic:"🏨",c:"hotel",title:"Check in · Hôtel Hélios Opéra",desc:"正式入住，稍作休息。",tips:["把今天買的精品收妥、整理退稅單"],map:"Hotel Helios Opera Paris"},
+   {t:"11:00",ic:"🧳",c:"hotel",title:"退房 Hôtel Zélie",desc:"整理行李退房，準備搬往歌劇院一帶的新飯店。",tips:["退房前再檢查保險箱、插座、浴室","購物滿額的退稅單與收據收好"],coord:"48.8757,2.2954"},
+   {t:"11:40",ic:"🛎️",c:"hotel",title:"放行李 Hôtel Hélios Opéra",desc:"先到新飯店寄放行李，輕裝展開購物日。",tips:["跟櫃台確認 check-in 時間"],coord:"48.8761,2.3320"},
+   {t:"12:00",ic:"🏛️",c:"shop",title:"老佛爺圓頂 Galeries Lafayette（拍照 + 逛街）",desc:"百年百貨的新藝術彩繪玻璃圓頂是必拍地標，頂樓有免費觀景台可眺望歌劇院與巴黎屋頂。",tips:["圓頂中央往上拍最震撼；頂樓露台看全景","這裡能集中辦退稅，逛街動線順"],coord:"48.8738,2.3320"},
+   {t:"17:00",ic:"🏨",c:"hotel",title:"Check in · Hôtel Hélios Opéra",desc:"正式入住，稍作休息。",tips:["把今天買的精品收妥、整理退稅單"],coord:"48.8761,2.3320"},
    {t:"17:30",ic:"📷",c:"photo",title:"房間陽台拍照（咖啡 · 雜誌 · 花）",desc:"利用陽台佈置一個慵懶巴黎午後場景：咖啡、雜誌、一束花，柔光人像。",tips:["路上順手買一束鮮花當道具","傍晚柔光最美，靠窗順光拍"]},
-   {t:"19:30",ic:"🍝",c:"food",title:"Capucci - Trattoria（步行 3 分鐘）",desc:"離新飯店很近的義式小館，購物日後輕鬆收尾。",tips:["週間晚餐也建議先訂位","走路 3 分鐘，逛累了的好選擇"],map:"Capucci Trattoria Paris",book:1,menu:["手工義大利麵 Pasta","松露燉飯 Risotto","當日海鮮","提拉米蘇"]},
+   {t:"19:30",ic:"🍝",c:"food",title:"Capucci - Trattoria（步行 3 分鐘）",desc:"離新飯店很近的義式小館，購物日後輕鬆收尾。",tips:["週間晚餐也建議先訂位","走路 3 分鐘，逛累了的好選擇"],coord:"48.8744,2.3296",book:1,menu:["手工義大利麵 Pasta","松露燉飯 Risotto","當日海鮮","提拉米蘇"]},
  ]},
  {day:8,date:"6 / 11",wd:"四",title:"博物館・歌劇院",summary:"羅浮宮 · 加尼葉歌劇院 · 春天百貨",events:[
-   {t:"09:00",ic:"🖼️",c:"sight",title:"羅浮宮 Musée du Louvre",desc:"世界最大藝術博物館。蒙娜麗莎、勝利女神、米羅的維納斯三大鎮館之寶必看。",tips:["務必線上預約指定入場時段，現場常售罄","從 Porte des Lions 或地鐵地下入口進，避開玻璃金字塔長龍","重點路線先規劃，館內極大別貪多"],map:"Musee du Louvre Paris",ticket:"線上預約時段票"},
-   {t:"12:30",ic:"🎭",c:"sight",title:"加尼葉歌劇院 Palais Garnier",desc:"金碧輝煌的巴黎歌劇院，《歌劇魅影》舞台原型。先到外面廣場，現場看是否能入內參觀。",tips:["白天多有開放自由參觀（與演出檔期有關），可線上先查","大階梯、夏卡爾穹頂天花板必看"],map:"Palais Garnier Opera Paris",ticket:"參觀約€15"},
-   {t:"15:00",ic:"🛍️",c:"shop",title:"春天百貨 Printemps Haussmann",desc:"老佛爺隔壁的另一家華麗百貨，新藝術圓頂與頂樓露台景觀同樣精彩，逛街收尾。",tips:["頂樓露台可免費眺望巴黎屋頂","把最後的退稅一次辦齊"],map:"Printemps Haussmann Paris"},
+   {t:"09:00",ic:"🖼️",c:"sight",title:"羅浮宮 Musée du Louvre",desc:"世界最大藝術博物館。蒙娜麗莎、勝利女神、米羅的維納斯三大鎮館之寶必看。",tips:["務必線上預約指定入場時段，現場常售罄","從 Porte des Lions 或地鐵地下入口進，避開玻璃金字塔長龍","重點路線先規劃，館內極大別貪多"],coord:"48.8606,2.3376",ticket:"線上預約時段票"},
+   {t:"12:30",ic:"🎭",c:"sight",title:"加尼葉歌劇院 Palais Garnier",desc:"金碧輝煌的巴黎歌劇院，《歌劇魅影》舞台原型。先到外面廣場，現場看是否能入內參觀。",tips:["白天多有開放自由參觀（與演出檔期有關），可線上先查","大階梯、夏卡爾穹頂天花板必看"],coord:"48.8720,2.3316",ticket:"參觀約€15"},
+   {t:"15:00",ic:"🛍️",c:"shop",title:"春天百貨 Printemps Haussmann",desc:"老佛爺隔壁的另一家華麗百貨，新藝術圓頂與頂樓露台景觀同樣精彩，逛街收尾。",tips:["頂樓露台可免費眺望巴黎屋頂","把最後的退稅一次辦齊"],coord:"48.8743,2.3287"},
  ]},
  {day:9,date:"6 / 12",wd:"五",title:"賦歸",summary:"巴黎機場 → 返程",events:[
-   {t:"11:20",ic:"🛫",c:"transit",title:"抵達巴黎機場（CDG）",desc:"返程日。CDG 機場大、退稅與安檢排隊久，務必提前抵達。",tips:["國際線建議起飛前 3 小時到機場","先辦退稅（Pablo 機/海關蓋章）再托運該批商品","退稅商品手提者，過安檢後在管制區退稅櫃台辦"],map:"Paris Charles de Gaulle Airport"},
+   {t:"11:20",ic:"🛫",c:"transit",title:"抵達巴黎機場（CDG）",desc:"返程日。CDG 機場大、退稅與安檢排隊久，務必提前抵達。",tips:["國際線建議起飛前 3 小時到機場","先辦退稅（Pablo 機/海關蓋章）再托運該批商品","退稅商品手提者，過安檢後在管制區退稅櫃台辦"],coord:"49.0097,2.5479"},
  ]},
  {day:10,date:"6 / 13",wd:"六",title:"回到台灣",summary:"抵達桃園 · 旅程圓滿",events:[
-   {t:"06:55",ic:"🛬",c:"transit",title:"抵達台灣（桃園機場）",desc:"歡迎回家！整趟巴黎時尚之旅圓滿落幕。",tips:["核對行李件數","回家好好補眠、倒時差"],map:"桃園國際機場"},
+   {t:"06:55",ic:"🛬",c:"transit",title:"抵達台灣（桃園機場）",desc:"歡迎回家！整趟巴黎時尚之旅圓滿落幕。",tips:["核對行李件數","回家好好補眠、倒時差"],coord:"25.0777,121.2330"},
  ]},
 ];
 
 const DINE_STAR = [
-  {n:"Le Mavrommatis",d:"地中海／希臘風 · 一星",q:"Le Mavrommatis restaurant Paris",m:"慢烤羔羊・希臘海鮮・品嚐菜單"},
-  {n:"Lasserre",d:"經典法式 · 一星 · 開頂屋頂",q:"Lasserre restaurant Paris",m:"松露通心粉・烤鴿 André Malraux・可麗餅 Suzette"},
-  {n:"Pertinence",d:"現代法式 · 一星 · 親密小館",q:"Pertinence restaurant Paris",m:"主廚品嚐菜單・海螯蝦"},
-  {n:"NE/SO",d:"現代法式 · 一星",q:"NE SO restaurant Paris",m:"Guillaume Sanchez 創意品嚐菜單・蔬食創作"},
+  {n:"Le Mavrommatis",d:"地中海／希臘風 · 一星",c:"48.8390,2.3503",m:"慢烤羔羊・希臘海鮮・品嚐菜單"},
+  {n:"Lasserre",d:"經典法式 · 一星 · 開頂屋頂",c:"48.8662,2.3106",m:"松露通心粉・烤鴿 André Malraux・可麗餅 Suzette"},
+  {n:"Pertinence",d:"現代法式 · 一星 · 親密小館",c:"48.8577,2.3033",m:"主廚品嚐菜單・海螯蝦"},
+  {n:"NE/SO",d:"現代法式 · 一星",c:"48.8767,2.3478",m:"Guillaume Sanchez 創意品嚐菜單・蔬食創作"},
 ];
 const DINE_PRETTY = [
-  {n:"Kong",d:"Kenzo 頂樓玻璃屋 · 塞納河景",q:"Kong Restaurant Paris",m:"壽司拼盤・招牌調酒・週末早午餐"},
-  {n:"Les Ombres",d:"布朗利碼頭博物館頂樓 · 鐵塔景",q:"Les Ombres restaurant Paris Tour Eiffel",m:"午間套餐 CP 高・靠窗鐵塔位"},
-  {n:"Baronne",d:"時髦氛圍餐廳酒吧",q:"Baronne restaurant Paris",m:"分享式法式小品・招牌調酒"},
+  {n:"Kong",d:"Kenzo 頂樓玻璃屋 · 塞納河景",c:"48.8588,2.3417",m:"壽司拼盤・招牌調酒・週末早午餐"},
+  {n:"Les Ombres",d:"布朗利碼頭博物館頂樓 · 鐵塔景",c:"48.8615,2.2978",m:"午間套餐 CP 高・靠窗鐵塔位"},
+  {n:"Baronne",d:"時髦氛圍餐廳酒吧",c:"48.8728,2.3013",m:"分享式法式小品・招牌調酒"},
 ];
 
 const NOTES = [
@@ -470,7 +470,7 @@ DAYS.forEach(d=>{
   let evs="";
   d.events.forEach((e,i)=>{
     const cat=CAT[e.c];
-    let actions=`<a class="chip chip-map" target="_blank" href="${e.map?M(e.map):M(e.title+' Paris')}">📍 開地圖</a>`;
+    let actions=e.coord?`<a class="chip chip-map" target="_blank" href="${M(e.coord)}">📍 Google 地圖（座標定位）</a>`:'';
     if(e.ticket) actions+=`<span class="chip chip-ticket">🎟️ ${e.ticket}</span>`;
     if(e.book) actions+=`<span class="chip chip-book">🍽️ 建議訂位</span>`;
     let tips=e.tips?`<ul class="ev-tips">${e.tips.map(t=>`<li>${t}</li>`).join('')}</ul>`:'';
@@ -510,8 +510,8 @@ DAYS.forEach(d=>{
 // dining
 const ds=document.getElementById('dine-star'), dp=document.getElementById('dine-pretty');
 const dineMenu = m => m?`<div class="dd" style="margin-top:8px;color:#9a6b1e;border-top:1px dashed var(--line);padding-top:8px">🍽️ 必點 · ${m}</div>`:'';
-DINE_STAR.forEach(x=>ds.insertAdjacentHTML('beforeend',`<a target="_blank" href="${M(x.q)}"><div class="star">★ 米其林一星</div><div class="dn">${x.n}</div><div class="dd">${x.d}</div>${dineMenu(x.m)}</a>`));
-DINE_PRETTY.forEach(x=>dp.insertAdjacentHTML('beforeend',`<a target="_blank" href="${M(x.q)}"><div class="dn">${x.n}</div><div class="dd">${x.d}</div>${dineMenu(x.m)}</a>`));
+DINE_STAR.forEach(x=>ds.insertAdjacentHTML('beforeend',`<a target="_blank" href="${M(x.c)}"><div class="star">★ 米其林一星</div><div class="dn">${x.n}</div><div class="dd">${x.d}</div>${dineMenu(x.m)}</a>`));
+DINE_PRETTY.forEach(x=>dp.insertAdjacentHTML('beforeend',`<a target="_blank" href="${M(x.c)}"><div class="dn">${x.n}</div><div class="dd">${x.d}</div>${dineMenu(x.m)}</a>`));
 
 // notes
 const ng=document.getElementById('notes-grid');

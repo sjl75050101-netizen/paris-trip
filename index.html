@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PARIS · 巴黎 10 日行程導覽 ｜ 6.4 – 6.13</title>
+<meta name="description" content="巴黎時尚精品・拍攝・頒獎・迪士尼 互動式行程導覽" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ivory:#FBF6EE;
+    --ivory-2:#F3EADB;
+    --ink:#1d1a17;
+    --ink-soft:#4a443d;
+    --gold:#B8924A;
+    --gold-light:#d8b878;
+    --rose:#C77F6E;
+    --blue:#3a4d63;
+    --line:#e3d8c6;
+    --shadow:rgba(60,45,25,.12);
+    --c-transit:#5b6c7d;
+    --c-food:#c0705f;
+    --c-sight:#b8924a;
+    --c-shop:#9b6d8f;
+    --c-photo:#4f8a86;
+    --c-hotel:#6f8f6a;
+    --c-event:#3a4d63;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Noto Sans TC","Cormorant Garamond",sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    line-height:1.75;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold-light);color:#fff}
+
+  /* progress bar */
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--rose));z-index:200;transition:width .1s linear}
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;position:relative;padding:40px 24px;
+    background:
+      radial-gradient(circle at 50% 18%, rgba(216,184,120,.20), transparent 55%),
+      linear-gradient(180deg,#fdfaf4 0%, var(--ivory) 60%, var(--ivory-2) 100%);
+    overflow:hidden;
+  }
+  .hero .eiffel{position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);width:min(420px,72vw);opacity:.16;z-index:0}
+  .hero .eiffel path,.hero .eiffel line{stroke:var(--ink);stroke-width:1.4;fill:none;
+    stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 3.4s ease forwards .3s}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .hero-inner{position:relative;z-index:2;animation:fadeUp 1.2s ease both .2s}
+  .kicker{font-family:"Noto Serif TC",serif;letter-spacing:.5em;font-size:13px;color:var(--gold);text-transform:uppercase;margin-bottom:18px;padding-left:.5em}
+  .hero h1{
+    font-family:"Playfair Display",serif;font-weight:600;
+    font-size:clamp(64px,16vw,170px);line-height:.92;letter-spacing:.02em;color:var(--ink);
+  }
+  .hero h1 .accent{font-style:italic;color:var(--gold);}
+  .hero .zh-title{font-family:"Noto Serif TC",serif;font-size:clamp(18px,4vw,26px);letter-spacing:.35em;margin-top:14px;color:var(--ink-soft);padding-left:.35em}
+  .hero .dates{margin-top:26px;font-family:"Cormorant Garamond",serif;font-size:clamp(18px,3.5vw,24px);letter-spacing:.1em;color:var(--ink-soft)}
+  .hero .dates b{color:var(--gold);font-weight:600}
+  .tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+  .tags span{font-size:13px;letter-spacing:.12em;padding:6px 16px;border:1px solid var(--line);border-radius:30px;background:rgba(255,255,255,.5);color:var(--ink-soft)}
+  .cta{margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+  .btn{
+    cursor:pointer;border:none;font-family:"Noto Sans TC",sans-serif;font-size:15px;letter-spacing:.08em;
+    padding:14px 30px;border-radius:40px;transition:.3s;text-decoration:none;display:inline-flex;align-items:center;gap:8px
+  }
+  .btn-primary{background:var(--ink);color:var(--ivory)}
+  .btn-primary:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 10px 24px var(--shadow)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--ivory)}
+  .scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.3em;color:var(--ink-soft);z-index:2;animation:bob 2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+  /* ===== STICKY DAY NAV ===== */
+  .daynav{position:sticky;top:0;z-index:120;background:rgba(251,246,238,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .daynav-inner{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;scrollbar-width:none;max-width:1100px;margin:0 auto}
+  .daynav-inner::-webkit-scrollbar{display:none}
+  .daypill{flex:0 0 auto;cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:30px;padding:8px 16px;font-size:13px;letter-spacing:.05em;color:var(--ink-soft);transition:.25s;white-space:nowrap}
+  .daypill b{font-family:"Playfair Display",serif;margin-right:6px;color:var(--gold)}
+  .daypill:hover{border-color:var(--gold)}
+  .daypill.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .daypill.active b{color:var(--gold-light)}
+
+  /* ===== SECTIONS ===== */
+  .wrap{max-width:920px;margin:0 auto;padding:0 22px}
+  .day{padding:72px 0 30px;border-bottom:1px dashed var(--line)}
+  .day-head{display:flex;align-items:flex-end;gap:20px;margin-bottom:8px;flex-wrap:wrap}
+  .day-num{font-family:"Playfair Display",serif;font-size:clamp(54px,12vw,96px);line-height:.8;color:var(--gold);font-style:italic}
+  .day-meta .d-date{font-family:"Cormorant Garamond",serif;font-size:24px;letter-spacing:.12em;color:var(--ink)}
+  .day-meta .d-title{font-family:"Noto Serif TC",serif;font-size:20px;letter-spacing:.18em;color:var(--ink-soft);margin-top:2px}
+  .day-summary{font-size:15px;color:var(--ink-soft);margin:6px 0 30px;letter-spacing:.04em}
+
+  /* timeline */
+  .timeline{position:relative;padding-left:30px}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--line),var(--line))}
+  .ev{position:relative;margin-bottom:14px;opacity:0;transform:translateY(20px);transition:.6s}
+  .ev.in{opacity:1;transform:none}
+  .ev::before{content:"";position:absolute;left:-26px;top:20px;width:11px;height:11px;border-radius:50%;background:#fff;border:2px solid var(--dot,var(--gold));z-index:2}
+  .ev-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(60,45,25,.05);transition:.3s}
+  .ev-card:hover{box-shadow:0 10px 28px var(--shadow);transform:translateY(-1px)}
+  .ev-head{display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer}
+  .ev-time{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:19px;color:var(--ink);min-width:54px;letter-spacing:.04em}
+  .ev-ic{font-size:22px;width:30px;text-align:center;flex:0 0 auto}
+  .ev-title{flex:1;font-size:16px;font-weight:500;letter-spacing:.02em}
+  .ev-cat{font-size:11px;letter-spacing:.1em;color:#fff;background:var(--dot);padding:3px 10px;border-radius:20px;white-space:nowrap}
+  .ev-arrow{transition:.3s;color:var(--ink-soft);font-size:13px}
+  .ev-card.open .ev-arrow{transform:rotate(180deg)}
+  .ev-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .ev-inner{padding:2px 18px 20px 62px}
+  .ev-desc{font-size:14.5px;color:var(--ink-soft);margin-bottom:12px;line-height:1.85}
+  .ev-tips{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+  .ev-tips li{font-size:13.5px;color:var(--ink-soft);padding-left:20px;position:relative;line-height:1.7}
+  .ev-tips li::before{content:"✦";position:absolute;left:0;color:var(--gold);font-size:12px;top:2px}
+  .ev-menu{background:linear-gradient(135deg,#fdf6ea,#f7ecd6);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:14px}
+  .ev-menu .mt{font-family:"Noto Serif TC",serif;font-size:13px;letter-spacing:.12em;color:#9a6b1e;margin-bottom:9px;display:flex;align-items:center;gap:6px}
+  .ev-menu ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px}
+  .ev-menu li{font-size:13px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 12px;color:var(--ink);letter-spacing:.02em}
+  .ev-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .chip{font-size:12.5px;letter-spacing:.04em;padding:7px 14px;border-radius:24px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:.25s}
+  .chip-map{background:var(--ivory-2);color:var(--ink);border:1px solid var(--line)}
+  .chip-map:hover{background:var(--ink);color:#fff}
+  .chip-ticket{background:#fff4e0;color:#9a6b1e;border:1px solid #ecd9b0}
+  .chip-book{background:#fbe9e6;color:#a4503f;border:1px solid #f0cfc8}
+
+  /* section heading */
+  .section{padding:84px 0 40px}
+  .sec-kicker{text-align:center;font-family:"Noto Serif TC",serif;letter-spacing:.5em;font-size:12px;color:var(--gold);text-transform:uppercase;padding-left:.5em}
+  .sec-title{text-align:center;font-family:"Playfair Display",serif;font-size:clamp(32px,7vw,52px);font-weight:600;margin:10px 0 8px}
+  .sec-sub{text-align:center;color:var(--ink-soft);font-size:15px;margin-bottom:40px;letter-spacing:.04em}
+
+  /* notes grid */
+  .notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .note{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 20px 22px;transition:.3s;opacity:0;transform:translateY(18px)}
+  .note.in{opacity:1;transform:none}
+  .note:hover{box-shadow:0 10px 26px var(--shadow);transform:translateY(-3px)}
+  .note h3{font-family:"Noto Serif TC",serif;font-size:17px;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .note h3 .ni{font-size:22px}
+  .note ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .note li{font-size:13.5px;color:var(--ink-soft);padding-left:18px;position:relative;line-height:1.7}
+  .note li::before{content:"–";position:absolute;left:0;color:var(--gold)}
+  .note li b{color:var(--ink);font-weight:600}
+
+  /* extra ideas */
+  .ideas{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .idea{background:linear-gradient(160deg,#fff,#fdf8ef);border:1px solid var(--line);border-radius:16px;padding:22px;opacity:0;transform:translateY(18px);transition:.3s}
+  .idea.in{opacity:1;transform:none}
+  .idea .num{font-family:"Playfair Display",serif;font-style:italic;font-size:30px;color:var(--gold-light);line-height:1}
+  .idea h4{font-family:"Noto Serif TC",serif;font-size:16px;margin:8px 0 8px;letter-spacing:.04em}
+  .idea p{font-size:13.5px;color:var(--ink-soft);line-height:1.75}
+
+  /* dining options */
+  .dine{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:6px}
+  .dine a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;transition:.3s;color:var(--ink)}
+  .dine a:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 20px var(--shadow)}
+  .dine .star{color:var(--gold);font-size:13px;letter-spacing:.1em}
+  .dine .dn{font-family:"Noto Serif TC",serif;font-size:17px;margin:4px 0 4px}
+  .dine .dd{font-size:12.5px;color:var(--ink-soft)}
+
+  /* footer */
+  footer{background:var(--ink);color:#e9e2d4;padding:60px 22px 40px;text-align:center;margin-top:50px}
+  footer .ft-title{font-family:"Playfair Display",serif;font-size:30px;color:var(--gold-light);margin-bottom:8px}
+  footer .emr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;max-width:680px;margin:28px auto 0;text-align:left}
+  footer .emr div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px}
+  footer .emr .lab{font-size:12px;letter-spacing:.1em;color:var(--gold-light);margin-bottom:4px}
+  footer .emr .val{font-size:15px;color:#fff}
+  footer .note-foot{margin-top:30px;font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.05em}
+
+  /* back to top */
+  #toTop{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;border:none;cursor:pointer;font-size:18px;opacity:0;pointer-events:none;transition:.3s;z-index:130;box-shadow:0 6px 18px var(--shadow)}
+  #toTop.show{opacity:1;pointer-events:auto}
+  #toTop:hover{background:var(--gold)}
+
+  /* ===== TOUR MODAL ===== */
+  .tour{position:fixed;inset:0;z-index:300;background:rgba(20,16,10,.78);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px}
+  .tour.show{display:flex;animation:fadeIn .3s ease}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .tour-card{background:var(--ivory);border-radius:22px;max-width:560px;width:100%;max-height:90svh;overflow:hidden;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.5);display:flex;flex-direction:column}
+  .tour-top{padding:26px 28px 18px;background:linear-gradient(135deg,#fdf8ef,#f1e6d3);border-bottom:1px solid var(--line)}
+  .tour-step{font-family:"Cormorant Garamond",serif;letter-spacing:.2em;font-size:13px;color:var(--gold);text-transform:uppercase}
+  .tour-when{font-family:"Noto Serif TC",serif;font-size:14px;color:var(--ink-soft);margin-top:4px}
+  .tour-ic{font-size:40px;margin:10px 0 6px}
+  .tour-title{font-family:"Playfair Display",serif;font-size:27px;font-weight:600;line-height:1.2}
+  .tour-zh{font-family:"Noto Serif TC",serif;font-size:16px;color:var(--ink-soft);margin-top:4px;letter-spacing:.05em}
+  .tour-body{padding:20px 28px;overflow-y:auto}
+  .tour-body p{font-size:14.5px;color:var(--ink-soft);line-height:1.9}
+  .tour-body .tour-tip{margin-top:14px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:13.5px;color:var(--ink)}
+  .tour-foot{padding:16px 24px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff}
+  .tour-dots{display:flex;gap:6px;flex-wrap:wrap;max-width:200px}
+  .tour-dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:.3s}
+  .tour-dots i.on{background:var(--gold);transform:scale(1.3)}
+  .tour-nav{display:flex;gap:8px}
+  .tour-nav button{cursor:pointer;border:1px solid var(--ink);background:transparent;border-radius:30px;padding:9px 18px;font-size:13px;font-family:"Noto Sans TC";transition:.25s}
+  .tour-nav button:hover{background:var(--ink);color:#fff}
+  .tour-nav .next{background:var(--ink);color:#fff}
+  .tour-nav .next:hover{background:var(--gold);border-color:var(--gold)}
+  .tour-close{position:absolute;top:14px;right:16px;cursor:pointer;border:none;background:rgba(0,0,0,.06);width:34px;height:34px;border-radius:50%;font-size:16px;color:var(--ink);z-index:3;transition:.25s}
+  .tour-close:hover{background:var(--ink);color:#fff}
+
+  @media(max-width:560px){
+    .ev-inner{padding-left:18px}
+    .day-head{gap:12px}
+    .ev-cat{display:none}
+  }
+  .fadeup{opacity:0;transform:translateY(22px);transition:.7s}
+  .fadeup.in{opacity:1;transform:none}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <svg class="eiffel" viewBox="0 0 200 320" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <path d="M100 10 L100 40" />
+    <path d="M88 40 L112 40" />
+    <path d="M83 70 L117 70" />
+    <path d="M74 130 L126 130" />
+    <path d="M60 200 L140 200" />
+    <path d="M92 40 L70 130 L40 300" />
+    <path d="M108 40 L130 130 L160 300" />
+    <path d="M84 70 L60 200" />
+    <path d="M116 70 L140 200" />
+    <path d="M70 130 L130 130" />
+    <path d="M60 200 L75 200 M125 200 L140 200" />
+    <path d="M40 300 L160 300" />
+    <path d="M55 250 L145 250" />
+  </svg>
+  <div class="hero-inner">
+    <div class="kicker">Le Voyage · 2026</div>
+    <h1>PAR<span class="accent">i</span>S</h1>
+    <div class="zh-title">巴 黎 十 日</div>
+    <div class="dates"><b>6.04</b> &nbsp;–&nbsp; <b>6.13</b> &nbsp;·&nbsp; 時尚 · 拍攝 · 頒獎 · 迪士尼</div>
+    <div class="tags">
+      <span>👜 精品購物</span><span>📷 鐵塔拍攝</span><span>🏆 頒獎典禮</span><span>🏰 迪士尼</span><span>⭐ 米其林</span>
+    </div>
+    <div class="cta">
+      <button class="btn btn-primary" onclick="openTour()">✨ 開始導覽</button>
+      <a class="btn btn-ghost" href="#day1">瀏覽行程 ↓</a>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL · 向下滑</div>
+</header>
+
+<!-- DAY NAV -->
+<nav class="daynav"><div class="daynav-inner" id="daynav"></div></nav>
+
+<!-- ITINERARY -->
+<main id="itinerary" class="wrap"></main>
+
+<!-- DINING OPTIONS -->
+<section class="section wrap" id="dining">
+  <div class="sec-kicker">À Table</div>
+  <h2 class="sec-title">餐廳口袋名單</h2>
+  <p class="sec-sub">6/9 公司聚餐 & 旅途中的備選 — 點擊查地圖</p>
+  <h3 style="font-family:'Noto Serif TC';letter-spacing:.1em;margin:10px 0 4px;color:var(--ink-soft)">⭐ 米其林一星</h3>
+  <div class="dine" id="dine-star"></div>
+  <h3 style="font-family:'Noto Serif TC';letter-spacing:.1em;margin:26px 0 4px;color:var(--ink-soft)">🍴 漂亮餐廳</h3>
+  <div class="dine" id="dine-pretty"></div>
+</section>
+
+<!-- NOTES -->
+<section class="section wrap" id="notes">
+  <div class="sec-kicker">Avant le Départ</div>
+  <h2 class="sec-title">行前注意事項</h2>
+  <p class="sec-sub">出發前逐項確認 ✓</p>
+  <div class="notes" id="notes-grid"></div>
+</section>
+
+<!-- IDEAS -->
+<section class="section wrap" id="ideas">
+  <div class="sec-kicker">Ne pas Oublier</div>
+  <h2 class="sec-title">你可能還沒想到的</h2>
+  <p class="sec-sub">幫你補上容易忽略、但會很有感的細節</p>
+  <div class="ideas" id="ideas-grid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-title">Bon Voyage ✦</div>
+  <p style="color:rgba(255,255,255,.7);letter-spacing:.1em">願這趟巴黎旅程，閃閃發光。</p>
+  <div class="emr">
+    <div><div class="lab">緊急電話（歐盟）</div><div class="val">112</div></div>
+    <div><div class="lab">報警 / 救護</div><div class="val">17 / 15</div></div>
+    <div><div class="lab">駐法國台北代表處</div><div class="val">+33 1 56 88 62 30</div><div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:2px">急難救助 +33 6 80 07 49 94</div></div>
+    <div><div class="lab">台灣 24h 急難救助</div><div class="val">+886 800-085-095</div></div>
+  </div>
+  <p class="note-foot">互動行程頁 · 離線可用 · 建議「加入主畫面」隨身帶著走</p>
+</footer>
+
+<button id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- TOUR MODAL -->
+<div class="tour" id="tour">
+  <div class="tour-card">
+    <button class="tour-close" onclick="closeTour()">✕</button>
+    <div class="tour-top">
+      <div class="tour-step" id="t-step"></div>
+      <div class="tour-when" id="t-when"></div>
+      <div class="tour-ic" id="t-ic"></div>
+      <div class="tour-title" id="t-title"></div>
+      <div class="tour-zh" id="t-zh"></div>
+    </div>
+    <div class="tour-body">
+      <p id="t-desc"></p>
+      <div class="tour-tip" id="t-tip"></div>
+    </div>
+    <div class="tour-foot">
+      <div class="tour-dots" id="t-dots"></div>
+      <div class="tour-nav">
+        <button class="prev" onclick="tourMove(-1)">← 上一站</button>
+        <button class="next" onclick="tourMove(1)">下一站 →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===================== DATA ===================== */
+const CAT = {
+  transit:{label:"交通",color:"var(--c-transit)"},
+  food:{label:"美食",color:"var(--c-food)"},
+  sight:{label:"景點",color:"var(--c-sight)"},
+  shop:{label:"購物",color:"var(--c-shop)"},
+  photo:{label:"拍攝",color:"var(--c-photo)"},
+  hotel:{label:"住宿",color:"var(--c-hotel)"},
+  event:{label:"活動",color:"var(--c-event)"},
+};
+const M = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+
+const DAYS = [
+ {day:1,date:"6 / 4",wd:"四",title:"啟程",summary:"台北 → 巴黎 · 出發日",events:[
+   {t:"19:30",ic:"🚗",c:"transit",title:"出發前往桃園機場",desc:"提前出門避開晚高峰車潮。出發前最後確認：護照、登機證/電子機票、托運與隨身行李、行動電源。",tips:["護照效期需離境後仍滿 6 個月","行動電源、鋰電池只能隨身不可托運"]},
+   {t:"21:30",ic:"🛫",c:"transit",title:"抵達桃園機場",desc:"國際線建議起飛前 3 小時抵達，辦理報到與托運。",tips:["要退稅的精品別放托運，隨身帶著","先在機場吃點東西、補水"],map:"桃園國際機場"},
+   {t:"23:30",ic:"✈️",c:"transit",title:"班機起飛",desc:"飛巴黎約 13–14 小時。多喝水、每 1–2 小時起身走動，避免久坐水腫；上機後即調成巴黎時間，幫助克服時差。",tips:["靠走道座位方便活動","帶頸枕、眼罩、保濕；機艙乾燥"]},
+ ]},
+ {day:2,date:"6 / 5",wd:"五",title:"巴黎・抵達日",summary:"香榭麗舍 · 凱旋門 · LV · Dior",events:[
+   {t:"08:05",ic:"🛬",c:"transit",title:"抵達巴黎機場（CDG）",desc:"戴高樂機場入境查驗 → 領行李 → 出關。可在此換少量歐元現金、開通 eSIM。",tips:["入境可能要備回程機票與訂房證明","領完行李留意扒手，別讓行李離身"],map:"Paris Charles de Gaulle Airport"},
+   {t:"10:30",ic:"🚕",c:"transit",title:"離開機場前往市區",desc:"計程車到右岸約 45–60 分鐘。CDG 到市區計程車為政府定價（右岸約 €56、左岸約 €65），上車先確認。",tips:["官方排班計程車在指定招呼站，勿搭主動攬客者","也可預約接送，行李多較舒適"]},
+   {t:"11:30",ic:"🏨",c:"hotel",title:"抵達飯店 Hôtel Zélie Champs-Elysées",desc:"通常下午才能 check-in，太早到可先寄放行李、輕裝出門。",tips:["長途飛行後別排太滿，留點緩衝","跟櫃台確認 check-in 時間與行李寄放"],map:"Hotel Zelie Champs-Elysees Paris"},
+   {t:"12:30",ic:"🥐",c:"food",title:"Le Drugstore（甜點 + 午餐）",desc:"Publicis Drugstore 位於香榭麗舍大道頂端，露台正對凱旋門，是邊看小凱旋門邊用餐的經典選擇。",tips:["想要露台景觀位建議先訂位","抵達首日吃清爽一點，幫助調時差"],map:"Publicis Drugstore Champs Elysees",book:1,menu:["生蠔・海鮮拼盤","法式漢堡 & 薯條","經典早午餐 Brunch","甜點櫃：閃電泡芙・檸檬塔"]},
+   {t:"15:00",ic:"📸",c:"sight",title:"凱旋門 Arc de Triomphe（拍照）",desc:"拿破崙為紀念戰役而建，12 條大道在此放射狀展開。可登頂 284 階看香榭麗舍全景。",tips:["過馬路走地下道，別橫越圓環","登頂需另購票，建議線上預約時段"],map:"Arc de Triomphe Paris",ticket:"登頂約€16"},
+   {t:"15:30",ic:"👜",c:"shop",title:"Louis Vuitton 香榭旗艦店",desc:"LV 全球旗艦，建築與陳列本身就是看點。旺季常需排隊，部分樓層可預約。",tips:["可請飯店禮賓或官網預約，減少排隊","記得辦退稅單（單店滿 €100.01）"],map:"Louis Vuitton Champs Elysees 101 Avenue des Champs-Elysees"},
+   {t:"17:00",ic:"☕",c:"shop",title:"Dior 蒙田大道 30 號",desc:"Dior 世界旗艦，內有 La Galerie Dior 展覽與咖啡廳 Monsieur Dior（甜點精緻）。現場感受氛圍。",tips:["咖啡廳熱門，想坐下可先問現場候位","蒙田大道精品林立，順路逛 Chanel、Gucci"],map:"Dior 30 Avenue Montaigne Paris",book:1,menuTitle:"咖啡廳推薦",menu:["Monsieur Dior：玫瑰/星形甜點","Dior 下午茶","花園主題甜品盤"]},
+   {t:"19:00",ic:"🍽️",c:"food",title:"香榭麗舍大道（逛街 + 晚餐）",desc:"世界最美大道之一，名店、咖啡館林立。傍晚燈光浪漫，適合散步晚餐。",menuTitle:"這一帶推薦",menu:["Ladurée 香榭店：馬卡龍下午茶","Fouquet's 經典咖啡館","各式 Brasserie 法式小館"],tips:["人多扒手多，包包前背、財不露白","首日早點回飯店補眠，隔天有拍攝行程"],map:"Avenue des Champs-Elysees Paris"},
+ ]},
+ {day:3,date:"6 / 6",wd:"六",title:"鐵塔日・拍攝",summary:"夏樂宮機位 · 戰神廣場野餐 · 塞納河夜遊船",events:[
+   {t:"11:30",ic:"🍝",c:"food",title:"Di Vino（鐵塔餐廳）",desc:"鄰近戰神廣場的義式餐廳，氛圍適合開啟鐵塔一日。",tips:["靠窗/鐵塔向位置先訂","拍攝日，午餐別太久"],map:"Di Vino restaurant Paris Tour Eiffel",book:1,menu:["布拉塔起司 Burrata","松露義大利麵","拿坡里薄脆披薩","提拉米蘇"]},
+   {t:"14:00",ic:"📷",c:"photo",title:"夏樂宮 Palais de Chaillot（鐵塔機位）",desc:"特羅卡德羅一帶是拍攝鐵塔全景的最佳對岸視角，廣場、階梯、噴泉都是經典構圖。",tips:["此區人潮多、扒手與兜售者多，顧好器材","清晨光線更柔、人更少（可評估改早場補拍）"],map:"Palais de Chaillot Trocadero Paris"},
+   {t:"—",ic:"🏛️",c:"sight",title:"Cité de l'Architecture et du Patrimoine",desc:"建築與遺產博物館，館內露台是少有人知、可避開人潮的鐵塔機位。",tips:["門票約 €13","室內景觀位，雨天備案也適合"],map:"Cite de l'Architecture et du Patrimoine Paris",ticket:"€13"},
+   {t:"—",ic:"⛲",c:"photo",title:"Jardins du Trocadéro",desc:"特羅卡德羅花園，噴泉與水池作前景，鐵塔當背景的明信片畫面。",tips:["噴泉水花注意器材防水","逆光時段可拍剪影"],map:"Jardins du Trocadero Paris"},
+   {t:"—",ic:"📷",c:"photo",title:"Avenue de Camoëns",desc:"IG 爆紅的對稱街景，兩排奧斯曼建築正對鐵塔，階梯構圖極上鏡。",tips:["熱門拍點要排隊禮讓","早上順光、人少"],map:"Avenue de Camoens Paris"},
+   {t:"—",ic:"🎨",c:"photo",title:"Palais de Chaillot（塗鴉牆）",desc:"夏樂宮周邊的塗鴉牆，當街頭風格轉場與人像背景。",tips:["可作為服裝/風格轉場的對比場景"],map:"Palais de Chaillot Paris"},
+   {t:"16:20",ic:"🎞️",c:"photo",title:"225 Rue de l'Université（街景＋白轉場）",desc:"巷弄正對鐵塔的知名街景機位，淺色牆面適合做「白色轉場」。",tips:["住宅區請降低音量、勿擋住居民出入","隨人潮變化，預留補拍時間"],map:"225 Rue de l'Universite Paris"},
+   {t:"17:20",ic:"🧺",c:"shop",title:"Rue Cler（採買野餐）",desc:"巴黎經典市集街，買起司、火腿、麵包、水果、氣泡水，備齊野餐。",tips:["週日下午多數店家會打烊，今天是週六沒問題","自備野餐墊、濕紙巾、垃圾袋"],map:"Rue Cler Paris",menuTitle:"野餐採買推薦",menu:["法國長棍 Baguette","Comté・Brie 起司","火腿 Jambon","草莓・櫻桃","馬卡龍","氣泡水 / 粉紅酒"]},
+   {t:"18:00",ic:"🧺",c:"photo",title:"Champ de Mars（戰神廣場野餐）",desc:"鐵塔正前方大草坪，巴黎人最愛的野餐地。傍晚光線柔美，是拍攝黃金時段。",tips:["草坪有時禁玻璃瓶/夜間清場，留意現場告示與警衛","保管隨身物，野餐時也別鬆懈"],map:"Champ de Mars Paris"},
+   {t:"20:30",ic:"🧹",c:"photo",title:"收拾野餐",desc:"垃圾全部帶走，維持草坪整潔。準備轉往夜拍機位。",tips:["天還亮（六月日落約 21:50），不急"]},
+   {t:"21:15",ic:"🎞️",c:"photo",title:"Rue de l'Université（晚轉場）",desc:"藍調時刻（日落後）拍攝，鐵塔開始點燈，色溫最美。",tips:["藍調時刻很短，先架好構圖等光"],map:"Rue de l'Universite Paris"},
+   {t:"22:00",ic:"✨",c:"photo",title:"鐵塔閃燈 Scintillement（5 分鐘）",desc:"每天日落後至凌晨 1 點，每到整點鐵塔會閃爍 5 分鐘金光，是必拍亮點。",tips:["手機開夜景/防手震，或用腳架","整點前 2 分鐘就定位"],map:"Eiffel Tower Paris"},
+   {t:"22:30",ic:"🚤",c:"photo",title:"Bateau Boréas（塞納河夜遊船）",desc:"夜晚搭船遊塞納河，從水上拍鐵塔與兩岸夜景，視角獨特。",tips:["河上風大很冷，務必帶外套/披肩","船會晃，器材防掉、開防手震"],map:"Bateau Boreas Seine Paris",book:1},
+   {t:"23:00",ic:"✨",c:"photo",title:"閃燈 23:00 / 24:00、全黑閃 01:00",desc:"把握整點閃燈；凌晨 1 點是當晚最後一次（之後熄燈），有「全黑後閃光」的特殊畫面。",tips:["行程到深夜，隔天迪士尼很操，注意體力","夜歸叫車回飯店，別走暗巷"]},
+ ]},
+ {day:4,date:"6 / 7",wd:"日",title:"左岸右岸・甜點與珠寶",summary:"巨型可頌 · Chanel · 凡登廣場 · 杜樂麗 · Kong",events:[
+   {t:"11:30",ic:"🥐",c:"food",title:"Maison Philippe Conticini（巨大可頌）",desc:"名甜點主廚 Philippe Conticini 的店（巴黎 1 區），招牌巨型可頌與閃電泡芙超上鏡。",tips:["熱門品項常售罄，早點到","今天是週日，先確認當日營業時間"],map:"Maison Philippe Conticini Paris 1er",menu:["巨型可頌 🥐","Paris-Brest（主廚成名作）","閃電泡芙 Éclair","檸檬塔・法式布丁 Flan"]},
+   {t:"13:00",ic:"🤍",c:"shop",title:"Chanel · 31 Rue Cambon（白色包裝）",desc:"Chanel 的歷史總店，樓上就是 Coco Chanel 的公寓，品牌精神原點。",tips:["週日部分精品店休或縮短營業，務必先查/預約","購物滿額辦退稅，保留收據與護照"],map:"Chanel 31 Rue Cambon Paris"},
+   {t:"15:00",ic:"💎",c:"shop",title:"VCA · 凡登廣場 Place Vendôme（+ 附近逛逛）",desc:"Van Cleef & Arpels 與全球頂級珠寶錶店環繞凡登廣場，氣場十足，廣場本身也很好拍。",tips:["高級珠寶店多採預約制，可請飯店協助","廣場中央圓柱是經典構圖"],map:"Place Vendome Paris"},
+   {t:"16:30",ic:"🌳",c:"sight",title:"杜樂麗花園 Jardin des Tuileries",desc:"羅浮宮前的法式古典花園，標誌性綠色鐵椅、噴泉水池，散步與拍照都愜意。",tips:["租把綠椅坐在水池邊，巴黎人的日常","夏季有時有摩天輪/遊樂場"],map:"Jardin des Tuileries Paris"},
+   {t:"17:30",ic:"🖼️",c:"sight",title:"巴黎小皇宮博物館 Petit Palais",desc:"美術館建築華美，常設展免費，內部金色階梯與中庭咖啡座非常出片。",tips:["常設展免費入場（特展另購）","留意閉館時間，通常 18:00 前後"],map:"Petit Palais Paris",ticket:"常設免費"},
+   {t:"19:30",ic:"🍸",c:"food",title:"Kong（晚餐）",desc:"位於 Kenzo 大樓頂樓的玻璃屋餐廳，俯瞰塞納河與新橋，《慾望城市》取景地，氣氛時髦。",tips:["景觀位超搶手，務必提前訂位","告知想要靠窗/玻璃屋區"],map:"Kong Restaurant Paris 1 Rue du Pont Neuf",book:1,menu:["壽司・卷物拼盤","和風煎餃 Gyoza","招牌調酒 Cocktail","玻璃屋甜點"]},
+   {t:"21:30",ic:"🏨",c:"hotel",title:"回飯店休息",desc:"隔天 7:30 就要出門迪士尼，早點回去養足精神。",tips:["先把迪士尼門票/快速通行/app 準備好"]},
+ ]},
+ {day:5,date:"6 / 8",wd:"一",title:"迪士尼樂園",summary:"Disneyland Paris 一日 · 夜間煙火",events:[
+   {t:"07:30",ic:"🚆",c:"transit",title:"出門前往迪士尼",desc:"搭 RER A 線往 Marne-la-Vallée–Chessy 站，車程約 40–50 分鐘，出站即達園區。",tips:["買對到 Chessy 的車票/Navigo 加值區段","尖峰人多，顧好包包與手機"],map:"Marne-la-Vallee Chessy RER station"},
+   {t:"08:30",ic:"🏰",c:"event",title:"Disneyland Paris",desc:"巴黎迪士尼一日。善用官方 App 看即時排隊時間，熱門設施可加購 Premier Access 快速通行。",tips:["下載官方 App、先預約熱門設施與角色見面","穿好走的鞋、帶行動電源、薄外套與雨具","園內餐廳建議先訂位，避開用餐尖峰"],map:"Disneyland Paris"},
+   {t:"22:50",ic:"🎆",c:"event",title:"城堡煙火秀結束",desc:"夜間煙火 + 投影是全日壓軸，建議提前 30–40 分卡好城堡正面位置。",tips:["煙火前先去一趟洗手間、補水","看完人潮極多，先想好集合點"]},
+   {t:"23:10",ic:"🛍️",c:"shop",title:"等人潮散（買紀念品、拍照）",desc:"煙火後出口瞬間爆滿，留在園內逛主街商店、夜拍城堡，避開人流高峰。",tips:["主街商店通常營業到閉園後一小段","跟同行的人講好走散時的集合點"]},
+   {t:"23:20",ic:"🚕",c:"transit",title:"往外走叫車回市區",desc:"確認 RER 末班車時間，或事先預約計程車/網約車（深夜叫車較難、排隊長）。",tips:["先用 app 預約車，省得現場久候","深夜返程注意安全，結伴同行"]},
+ ]},
+ {day:6,date:"6 / 9",wd:"二",title:"頒獎典禮",summary:"頒獎 · 公司聚餐",events:[
+   {t:"12:00",ic:"🏆",c:"event",title:"頒獎典禮",desc:"今天的重頭戲。正式場合，提前確認服裝要求（dress code）、交通與抵達時間。",tips:["正式服裝/禮服前一晚先備好、燙平","提早出門，預留交通與報到時間"]},
+   {t:"17:00",ic:"🎉",c:"event",title:"頒獎結束",desc:"稍作休息、整理儀容，準備晚間聚餐。",tips:["回飯店換裝或補妝再赴宴"]},
+   {t:"18:00",ic:"🍽️",c:"food",title:"公司聚餐",desc:"備選見下方「餐廳口袋名單」：米其林一星 Le Mavrommatis / Lasserre / Pertinence / NE-SO；漂亮餐廳 Kong / Les Ombres / Baronne。",tips:["米其林餐廳務必提前數週訂位、確認 dress code","訂位人數/時間若有變動，盡早通知餐廳"]},
+ ]},
+ {day:7,date:"6 / 10",wd:"三",title:"精品購物日 🛍️",summary:"換飯店 · 老佛爺圓頂 · 陽台時光",events:[
+   {t:"11:00",ic:"🧳",c:"hotel",title:"退房 Hôtel Zélie",desc:"整理行李退房，準備搬往歌劇院一帶的新飯店。",tips:["退房前再檢查保險箱、插座、浴室","購物滿額的退稅單與收據收好"],map:"Hotel Zelie Champs-Elysees Paris"},
+   {t:"11:40",ic:"🛎️",c:"hotel",title:"放行李 Hôtel Hélios Opéra",desc:"先到新飯店寄放行李，輕裝展開購物日。",tips:["跟櫃台確認 check-in 時間"],map:"Hotel Helios Opera Paris"},
+   {t:"12:00",ic:"🏛️",c:"shop",title:"老佛爺圓頂 Galeries Lafayette（拍照 + 逛街）",desc:"百年百貨的新藝術彩繪玻璃圓頂是必拍地標，頂樓有免費觀景台可眺望歌劇院與巴黎屋頂。",tips:["圓頂中央往上拍最震撼；頂樓露台看全景","這裡能集中辦退稅，逛街動線順"],map:"Galeries Lafayette Haussmann Paris"},
+   {t:"17:00",ic:"🏨",c:"hotel",title:"Check in · Hôtel Hélios Opéra",desc:"正式入住，稍作休息。",tips:["把今天買的精品收妥、整理退稅單"],map:"Hotel Helios Opera Paris"},
+   {t:"17:30",ic:"📷",c:"photo",title:"房間陽台拍照（咖啡 · 雜誌 · 花）",desc:"利用陽台佈置一個慵懶巴黎午後場景：咖啡、雜誌、一束花，柔光人像。",tips:["路上順手買一束鮮花當道具","傍晚柔光最美，靠窗順光拍"]},
+   {t:"19:30",ic:"🍝",c:"food",title:"Capucci - Trattoria（步行 3 分鐘）",desc:"離新飯店很近的義式小館，購物日後輕鬆收尾。",tips:["週間晚餐也建議先訂位","走路 3 分鐘，逛累了的好選擇"],map:"Capucci Trattoria Paris",book:1,menu:["手工義大利麵 Pasta","松露燉飯 Risotto","當日海鮮","提拉米蘇"]},
+ ]},
+ {day:8,date:"6 / 11",wd:"四",title:"博物館・歌劇院",summary:"羅浮宮 · 加尼葉歌劇院 · 春天百貨",events:[
+   {t:"09:00",ic:"🖼️",c:"sight",title:"羅浮宮 Musée du Louvre",desc:"世界最大藝術博物館。蒙娜麗莎、勝利女神、米羅的維納斯三大鎮館之寶必看。",tips:["務必線上預約指定入場時段，現場常售罄","從 Porte des Lions 或地鐵地下入口進，避開玻璃金字塔長龍","重點路線先規劃，館內極大別貪多"],map:"Musee du Louvre Paris",ticket:"線上預約時段票"},
+   {t:"12:30",ic:"🎭",c:"sight",title:"加尼葉歌劇院 Palais Garnier",desc:"金碧輝煌的巴黎歌劇院，《歌劇魅影》舞台原型。先到外面廣場，現場看是否能入內參觀。",tips:["白天多有開放自由參觀（與演出檔期有關），可線上先查","大階梯、夏卡爾穹頂天花板必看"],map:"Palais Garnier Opera Paris",ticket:"參觀約€15"},
+   {t:"15:00",ic:"🛍️",c:"shop",title:"春天百貨 Printemps Haussmann",desc:"老佛爺隔壁的另一家華麗百貨，新藝術圓頂與頂樓露台景觀同樣精彩，逛街收尾。",tips:["頂樓露台可免費眺望巴黎屋頂","把最後的退稅一次辦齊"],map:"Printemps Haussmann Paris"},
+ ]},
+ {day:9,date:"6 / 12",wd:"五",title:"賦歸",summary:"巴黎機場 → 返程",events:[
+   {t:"11:20",ic:"🛫",c:"transit",title:"抵達巴黎機場（CDG）",desc:"返程日。CDG 機場大、退稅與安檢排隊久，務必提前抵達。",tips:["國際線建議起飛前 3 小時到機場","先辦退稅（Pablo 機/海關蓋章）再托運該批商品","退稅商品手提者，過安檢後在管制區退稅櫃台辦"],map:"Paris Charles de Gaulle Airport"},
+ ]},
+ {day:10,date:"6 / 13",wd:"六",title:"回到台灣",summary:"抵達桃園 · 旅程圓滿",events:[
+   {t:"06:55",ic:"🛬",c:"transit",title:"抵達台灣（桃園機場）",desc:"歡迎回家！整趟巴黎時尚之旅圓滿落幕。",tips:["核對行李件數","回家好好補眠、倒時差"],map:"桃園國際機場"},
+ ]},
+];
+
+const DINE_STAR = [
+  {n:"Le Mavrommatis",d:"地中海／希臘風 · 一星",q:"Le Mavrommatis restaurant Paris",m:"慢烤羔羊・希臘海鮮・品嚐菜單"},
+  {n:"Lasserre",d:"經典法式 · 一星 · 開頂屋頂",q:"Lasserre restaurant Paris",m:"松露通心粉・烤鴿 André Malraux・可麗餅 Suzette"},
+  {n:"Pertinence",d:"現代法式 · 一星 · 親密小館",q:"Pertinence restaurant Paris",m:"主廚品嚐菜單・海螯蝦"},
+  {n:"NE/SO",d:"現代法式 · 一星",q:"NE SO restaurant Paris",m:"Guillaume Sanchez 創意品嚐菜單・蔬食創作"},
+];
+const DINE_PRETTY = [
+  {n:"Kong",d:"Kenzo 頂樓玻璃屋 · 塞納河景",q:"Kong Restaurant Paris",m:"壽司拼盤・招牌調酒・週末早午餐"},
+  {n:"Les Ombres",d:"布朗利碼頭博物館頂樓 · 鐵塔景",q:"Les Ombres restaurant Paris Tour Eiffel",m:"午間套餐 CP 高・靠窗鐵塔位"},
+  {n:"Baronne",d:"時髦氛圍餐廳酒吧",q:"Baronne restaurant Paris",m:"分享式法式小品・招牌調酒"},
+];
+
+const NOTES = [
+ {ic:"🛂",h:"證件 & 入境",li:["<b>護照</b>效期需離境後仍滿 6 個月","台灣護照赴申根區免簽，停留可達 90 天","出發前查 <b>ETIAS</b> 是否已上路（2026 預計實施，需線上申請）","備<b>回程機票、訂房證明、行程表</b>備查","護照、簽證影本 + 手機拍照雲端各存一份"]},
+ {ic:"🕵️",h:"防扒手（最重要）",li:["香榭、鐵塔、老佛爺、地鐵、迪士尼是<b>扒手熱區</b>","背包<b>前背</b>、拉鍊朝內，手機別放後口袋","護照正本鎖<b>飯店保險箱</b>，外出帶影本","遇陌生人搭話/塞東西/問卷，<b>直接走開</b>","別把精品紙袋大方外露，低調為上"]},
+ {ic:"🧾",h:"退稅 Détaxe（購物必看）",li:["<b>同一店家當日滿 €100.01</b> 可退稅","結帳時出示<b>護照</b>請店員開退稅單","離境機場用 <b>Pablo 機掃條碼</b>或海關蓋章","退稅商品<b>勿先托運</b>，海關可能查驗","退稅約 <b>12%</b>，機場退稅櫃台預留 1–2 小時"]},
+ {ic:"🍽️",h:"餐廳訂位",li:["米其林（Lasserre/Pertinence/NE-SO 等）需<b>提前數週訂位</b>","Di Vino、Kong、Les Ombres、Capucci 也建議先訂","注意<b>服裝要求</b>，高級餐廳忌短褲拖鞋","出發前再<b>確認/再次確認</b>訂位無誤","臨時取消請提前告知，避免 no-show 費用"]},
+ {ic:"🎟️",h:"門票・預約",li:["<b>羅浮宮</b>務必線上預約指定時段","凱旋門登頂、加尼葉歌劇院 建議先購票","<b>迪士尼</b>門票 + Premier Access + 餐廳先訂","Cité de l'Architecture 約 €13、小皇宮常設免費","精品店（Chanel/Dior/VCA/LV）旺季可<b>預約</b>"]},
+ {ic:"📱",h:"網路 & App",li:["備<b>eSIM 或漫遊</b>，下機即能上網","下載<b>離線地圖</b>（Google Maps 巴黎）","實用 App：Bonjour RATP / Citymapper（交通）","迪士尼官方 App、各精品/退稅 App","重要訂位、門票、登機證存<b>離線截圖</b>"]},
+ {ic:"🚇",h:"交通",li:["CDG → 市區：官方計程車<b>定價</b>右岸 €56 左右","市區可用 <b>Navigo</b> 或單程票搭 Metro/RER","迪士尼搭 <b>RER A</b> 到 Marne-la-Vallée–Chessy","深夜返程<b>先預約叫車</b>，別走暗巷","看好末班車時間，地鐵收班約 0:40–1:40"]},
+ {ic:"💶",h:"貨幣 & 支付",li:["帶<b>少量歐元現金</b>（市場/小費/廁所）","主力用<b>感應信用卡</b>，先開通海外刷卡","出發前通知銀行<b>境外消費</b>，避免被鎖卡","留意刷卡選<b>歐元計價</b>（DCC 換台幣較不划算）","備一張<b>備用卡</b>，與主卡分開放"]},
+ {ic:"🔌",h:"電壓 & 裝備",li:["法國 <b>230V、Type E 插座</b>，帶歐規轉接頭","多帶一個<b>多孔快充</b>，相機/手機一起充","拍攝裝備：<b>腳架、備用電池、記憶卡</b>","行動電源（隨身不可托運）","折疊購物袋 + <b>行李秤</b>（購物後防超重）"]},
+ {ic:"🌤️",h:"天氣 & 穿搭",li:["六月巴黎約 <b>14–25°C</b>，早晚偏涼","帶<b>薄外套/披肩</b>，遊船與夜拍很冷","偶有陣雨，帶<b>折傘/防水外套</b>","<b>日落晚（約 21:50）</b>，黃金與藍調時刻充足","大量步行，<b>好走的鞋</b>最重要"]},
+ {ic:"🩺",h:"健康 & 保險",li:["投保<b>旅平險 + 海外醫療</b>，存好保單與電話","帶<b>個人常備藥</b>、腸胃藥、OK 繃","防曬、保濕（巴黎夏天乾、紫外線強）","自來水可飲，帶<b>環保水壺</b>","餐廳/百貨才有廁所，<b>把握機會先上</b>"]},
+ {ic:"🆘",h:"緊急 & 時差",li:["法國比台灣<b>慢 6 小時</b>（夏令）","歐盟通用緊急 <b>112</b>；報警 17、救護 15","<b>駐法國台北代表處</b>：+33 1 56 88 62 30","信用卡掛失電話<b>另存手機</b>","與家人共享行程與每日定位"]},
+];
+
+const IDEAS = [
+ {h:"抵達首日別排太滿",p:"6/5 早上 8 點落地、長途飛行後體力有限，11:30 就 check-in 房間多半還沒好。先寄放行李、放慢腳步，把時差留點空間。"},
+ {h:"野餐的隱藏細節",p:"戰神廣場草坪有時禁玻璃瓶、夜間會清場。自備野餐墊、濕紙巾、垃圾袋，垃圾全帶走；貴重物別離身。"},
+ {h:"鐵塔閃燈時刻表",p:"日落後到凌晨 1 點，每到<b>整點閃爍 5 分鐘</b>，1 點是當晚最後一次。整點前 2 分鐘卡位、開防手震，畫面最穩。"},
+ {h:"塞納河遊船帶外套",p:"夜晚河上風大很冷，務必帶外套或披肩；船會晃，相機開防手震、繫好背帶，別讓器材掉進河裡。"},
+ {h:"迪士尼煙火後的撤離",p:"22:50 煙火散場人潮極大，深夜 RER 班次少、現場叫車排很久。<b>先用 App 預約車</b>，並和同行者約好走散集合點。"},
+ {h:"頒獎正式服裝先備好",p:"6/9 是正式場合，禮服/西裝前一晚先燙平、配件備齊；米其林晚宴也有 dress code，別穿短褲拖鞋。"},
+ {h:"換飯店日的行李動線",p:"6/10 從香榭搬到歌劇院區。退房先寄放行李再逛老佛爺，傍晚再回來 check-in，避免拖著行李逛街。"},
+ {h:"退稅要在離境前辦",p:"6/12 從巴黎離境就是辦退稅的時機。退稅商品先別托運、留時間給 Pablo 機與海關，預留 1–2 小時。"},
+ {h:"購物後行李會超重",p:"精品 + 紀念品很佔重量。帶<b>折疊行李袋與行李秤</b>，回程前秤一下，避免機場臨時被收超重費。"},
+ {h:"先說 Bonjour 再開口",p:"進店、問路先說一句「Bonjour」再講需求，法國人很吃這套，服務態度會差很多。離開說「Merci, au revoir」。"},
+ {h:"週日商店要先查",p:"法國<b>週日</b>很多店休或縮短營業（6/7 是週日）。雖然當天主要是拍攝，但甜點店/超市時間仍要先確認。"},
+ {h:"把這頁加入主畫面",p:"用手機瀏覽器打開這個行程頁，<b>加入主畫面</b>當 App 用，離線也能查；重要訂位/門票另存截圖備援。"},
+];
+
+/* ===================== RENDER ===================== */
+const root = document.getElementById('itinerary');
+const nav = document.getElementById('daynav');
+
+DAYS.forEach(d=>{
+  // nav pill
+  const pill=document.createElement('a');
+  pill.href="#day"+d.day;pill.className="daypill";pill.dataset.day=d.day;
+  pill.innerHTML=`<b>${d.day}</b>${d.date.replace(/ /g,'')} ${d.wd}`;
+  nav.appendChild(pill);
+
+  // section
+  const sec=document.createElement('section');
+  sec.className="day";sec.id="day"+d.day;
+  let evs="";
+  d.events.forEach((e,i)=>{
+    const cat=CAT[e.c];
+    let actions=`<a class="chip chip-map" target="_blank" href="${e.map?M(e.map):M(e.title+' Paris')}">📍 開地圖</a>`;
+    if(e.ticket) actions+=`<span class="chip chip-ticket">🎟️ ${e.ticket}</span>`;
+    if(e.book) actions+=`<span class="chip chip-book">🍽️ 建議訂位</span>`;
+    let tips=e.tips?`<ul class="ev-tips">${e.tips.map(t=>`<li>${t}</li>`).join('')}</ul>`:'';
+    let menu=e.menu?`<div class="ev-menu"><div class="mt">🍽️ ${e.menuTitle||'招牌必點'}</div><ul>${e.menu.map(m=>`<li>${m}</li>`).join('')}</ul></div>`:'';
+    evs+=`
+    <div class="ev" style="--dot:${cat.color}">
+      <div class="ev-card" onclick="toggleEv(this)">
+        <div class="ev-head">
+          <span class="ev-time">${e.t}</span>
+          <span class="ev-ic">${e.ic}</span>
+          <span class="ev-title">${e.title}</span>
+          <span class="ev-cat">${cat.label}</span>
+          <span class="ev-arrow">▾</span>
+        </div>
+        <div class="ev-body"><div class="ev-inner">
+          <div class="ev-desc">${e.desc}</div>
+          ${menu}
+          ${tips}
+          <div class="ev-actions">${actions}</div>
+        </div></div>
+      </div>
+    </div>`;
+  });
+  sec.innerHTML=`
+    <div class="day-head">
+      <div class="day-num">${String(d.day).padStart(2,'0')}</div>
+      <div class="day-meta">
+        <div class="d-date">DAY ${d.day} · ${d.date}（${d.wd}）</div>
+        <div class="d-title">${d.title}</div>
+      </div>
+    </div>
+    <div class="day-summary">${d.summary}</div>
+    <div class="timeline">${evs}</div>`;
+  root.appendChild(sec);
+});
+
+// dining
+const ds=document.getElementById('dine-star'), dp=document.getElementById('dine-pretty');
+const dineMenu = m => m?`<div class="dd" style="margin-top:8px;color:#9a6b1e;border-top:1px dashed var(--line);padding-top:8px">🍽️ 必點 · ${m}</div>`:'';
+DINE_STAR.forEach(x=>ds.insertAdjacentHTML('beforeend',`<a target="_blank" href="${M(x.q)}"><div class="star">★ 米其林一星</div><div class="dn">${x.n}</div><div class="dd">${x.d}</div>${dineMenu(x.m)}</a>`));
+DINE_PRETTY.forEach(x=>dp.insertAdjacentHTML('beforeend',`<a target="_blank" href="${M(x.q)}"><div class="dn">${x.n}</div><div class="dd">${x.d}</div>${dineMenu(x.m)}</a>`));
+
+// notes
+const ng=document.getElementById('notes-grid');
+NOTES.forEach(n=>ng.insertAdjacentHTML('beforeend',`<div class="note"><h3><span class="ni">${n.ic}</span>${n.h}</h3><ul>${n.li.map(x=>`<li>${x}</li>`).join('')}</ul></div>`));
+
+// ideas
+const ig=document.getElementById('ideas-grid');
+IDEAS.forEach((x,i)=>ig.insertAdjacentHTML('beforeend',`<div class="idea"><div class="num">${String(i+1).padStart(2,'0')}</div><h4>${x.h}</h4><p>${x.p}</p></div>`));
+
+/* ===================== INTERACTION ===================== */
+function toggleEv(card){
+  const body=card.querySelector('.ev-body');
+  const open=card.classList.toggle('open');
+  body.style.maxHeight=open?body.scrollHeight+'px':0;
+}
+
+// scroll progress + back to top
+const prog=document.getElementById('progress'), toTop=document.getElementById('toTop');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  prog.style.width=sc+'%';
+  toTop.classList.toggle('show',h.scrollTop>500);
+},{passive:true});
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.12});
+document.querySelectorAll('.ev,.note,.idea').forEach(el=>io.observe(el));
+
+// active day pill
+const dayEls=[...document.querySelectorAll('.day')];
+const pills=[...document.querySelectorAll('.daypill')];
+const spy=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const id=e.target.id.replace('day','');
+      pills.forEach(p=>p.classList.toggle('active',p.dataset.day===id));
+      const ap=pills.find(p=>p.dataset.day===id);
+      if(ap) ap.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+    }
+  });
+},{rootMargin:'-45% 0px -50% 0px'});
+dayEls.forEach(d=>spy.observe(d));
+
+/* ===================== GUIDED TOUR ===================== */
+const TOUR=[
+ {ic:"🛫",when:"DAY 1 · 6/4 23:30",title:"Le Départ",zh:"啟程・飛向巴黎",desc:"從桃園出發，跨越約 13 小時航程飛抵浪漫之都。上機後就把手錶調成巴黎時間，多喝水、起身活動，讓身體提前進入旅程節奏。",tip:"行動電源與精品退稅商品都要隨身，不可托運。"},
+ {ic:"📸",when:"DAY 2 · 6/5 15:00",title:"Arc de Triomphe",zh:"凱旋門・香榭序章",desc:"抵達首日從香榭麗舍揭幕：Le Drugstore 露台正對小凱旋門，接著走向凱旋門——十二條大道在此放射展開，傍晚再巡禮 LV 與 Dior 蒙田大道旗艦。",tip:"凱旋門過馬路走地下道；精品店記得開退稅單。"},
+ {ic:"🗼",when:"DAY 3 · 6/6 全日",title:"La Tour Eiffel",zh:"鐵塔日・從白天拍到深夜",desc:"今天獻給鐵塔：夏樂宮與 Camoëns 大道的經典機位、Rue Cler 採買後在戰神廣場野餐，傍晚藍調時刻、深夜塞納河遊船，捕捉整點閃燈的金色魔法。",tip:"閃燈在日落後每整點 5 分鐘，凌晨 1 點最後一次；遊船很冷帶外套。"},
+ {ic:"💎",when:"DAY 4 · 6/7 13:00",title:"Place Vendôme",zh:"甜點與珠寶・左岸右岸",desc:"從巨型可頌開場，走訪 Chanel 31 Rue Cambon 的品牌原點、凡登廣場的頂級珠寶，午後在杜樂麗花園與小皇宮優雅散步，夜晚登 Kong 玻璃屋俯瞰塞納河。",tip:"週日精品店可能縮短營業，先查時間或預約。"},
+ {ic:"🏰",when:"DAY 5 · 6/8 全日",title:"Disneyland Paris",zh:"迪士尼・夢幻一日",desc:"清晨搭 RER A 直奔樂園，善用 App 與快速通行玩遍熱門設施，夜晚以城堡煙火投影壓軸。煙火後人潮洶湧，記得先預約返程車。",tip:"好走的鞋、行動電源、薄外套；園內餐廳先訂位。"},
+ {ic:"🏆",when:"DAY 6 · 6/9 12:00",title:"La Cérémonie",zh:"頒獎典禮・高光時刻",desc:"旅程的重頭戲。盛裝出席頒獎典禮，傍晚以一頓米其林或景觀餐廳的聚餐，為這份榮耀乾杯。",tip:"正式服裝前一晚備好；米其林餐廳提前數週訂位並確認 dress code。"},
+ {ic:"🛍️",when:"DAY 7 · 6/10 12:00",title:"Galeries Lafayette",zh:"精品購物日・圓頂之下",desc:"換宿歌劇院區，於老佛爺百年圓頂下盡情採購、登頂俯瞰巴黎屋頂，傍晚回到飯店陽台佈置咖啡與花的慵懶場景，步行三分鐘享用義式晚餐。",tip:"先寄放行李再逛街；退稅單與收據集中收好。"},
+ {ic:"🖼️",when:"DAY 8 · 6/11 09:00",title:"Le Louvre",zh:"羅浮宮・藝術朝聖",desc:"在世界最大博物館與蒙娜麗莎相遇，再到加尼葉歌劇院仰望金色穹頂，最後於春天百貨頂樓露台，為購物畫下句點。",tip:"羅浮宮務必線上預約時段；先規劃重點路線避免迷路。"},
+ {ic:"🛬",when:"DAY 9–10 · 6/12–13",title:"Au Revoir, Paris",zh:"賦歸・後會有期",desc:"在 CDG 從容辦理退稅與報到，帶著滿滿戰利品與回憶飛回台灣。6/13 清晨抵達桃園，巴黎之旅圓滿落幕。",tip:"提前 3 小時到機場，退稅商品先別托運、預留排隊時間。"},
+];
+let ti=0;
+function openTour(){ti=0;renderTour();document.getElementById('tour').classList.add('show');document.body.style.overflow='hidden';}
+function closeTour(){document.getElementById('tour').classList.remove('show');document.body.style.overflow='';}
+function tourMove(d){ti=(ti+d+TOUR.length)%TOUR.length;renderTour();}
+function renderTour(){
+  const s=TOUR[ti];
+  document.getElementById('t-step').textContent=`導覽 ${ti+1} / ${TOUR.length}`;
+  document.getElementById('t-when').textContent=s.when;
+  document.getElementById('t-ic').textContent=s.ic;
+  document.getElementById('t-title').textContent=s.title;
+  document.getElementById('t-zh').textContent=s.zh;
+  document.getElementById('t-desc').textContent=s.desc;
+  document.getElementById('t-tip').innerHTML="💡 "+s.tip;
+  document.getElementById('t-dots').innerHTML=TOUR.map((_,i)=>`<i class="${i===ti?'on':''}"></i>`).join('');
+}
+// keyboard + backdrop
+document.getElementById('tour').addEventListener('click',e=>{if(e.target.id==='tour')closeTour();});
+addEventListener('keydown',e=>{
+  if(!document.getElementById('tour').classList.contains('show'))return;
+  if(e.key==='Escape')closeTour();
+  if(e.key==='ArrowRight')tourMove(1);
+  if(e.key==='ArrowLeft')tourMove(-1);
+});
+</script>
+</body>
+</html>
